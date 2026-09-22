@@ -14,15 +14,18 @@
 
 ## 立即运行
 
+只依赖 Python 3.9+ 标准库，克隆后即可运行：
+
 ```bash
-cd /Users/hongyan/Code/personal/undercover-lab
-uv run python -m undercover_lab --demo --seed 7
+git clone https://github.com/HY-love-sleep/undercover-lab.git
+cd undercover-lab
+python3 -m undercover_lab --demo --seed 7
 ```
 
-也可以直接使用当前 Python：
+用 uv 运行也可以：
 
 ```bash
-python3 -m undercover_lab --demo --seed 7
+uv run python -m undercover_lab --demo --seed 7
 ```
 
 输出文件默认在 `runs/`：
@@ -102,3 +105,38 @@ OpenAI-compatible 玩家会请求 `${base_url}/chat/completions`。`base_url` �
 - 让模型知道/不知道其他玩家的模型身份
 - 比较“自由聊天”与“每人一句话”的规则差异
 - 增加观众下注、联盟、反向卧底和多人卧底模式
+
+## 项目结构
+
+```text
+undercover-lab/
+├── undercover_lab/
+│   ├── engine.py      # 游戏状态机：身份分配、轮次、投票、计分
+│   ├── adapters.py    # prompt 构建、模型调用、违规检测
+│   ├── types.py       # 数据类型定义
+│   ├── replay.py      # HTML 回放生成器
+│   ├── batch.py       # 批量对局
+│   └── cli.py         # 命令行入口
+├── tests/             # pytest 单元测试
+├── config.example.json
+└── pyproject.toml
+```
+
+## 什么不会入库
+
+日志和本地配置都在 `.gitignore` 里，仓库只包含引擎和示例配置：
+
+| 路径 | 说明 |
+|---|---|
+| `config.json`、`config.real.json` | 你自己的模型配置，可能带私有 `base_url` |
+| `runs/`、`runs-*/` | 对局日志与 HTML 回放 |
+| `__pycache__/`、`.venv/` | 运行缓存 |
+
+密钥从来不写进配置：配置里只放环境变量名（`api_key_env`），程序运行时从环境变量读取。
+
+## 运行测试
+
+```bash
+pip install pytest
+python3 -m pytest tests/ -q
+```
