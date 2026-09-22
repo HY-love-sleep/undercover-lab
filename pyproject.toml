@@ -1,0 +1,17 @@
+[project]
+name = "undercover-lab"
+version = "0.1.0"
+description = "A multi-model social experiment lab for the Undercover game"
+requires-python = ">=3.9"
+readme = "README.md"
+dependencies = []
+
+[project.scripts]
+undercover = "undercover_lab.cli:main"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"

@@ -1,0 +1,51 @@
+{
+  "game": {
+    "civilian_word": "咖啡",
+    "undercover_word": "奶茶",
+    "max_rounds": 3
+  },
+  "players": [
+    {
+      "id": "p1",
+      "name": "Claude",
+      "adapter": "anthropic",
+      "model": "claude-sonnet-4-6",
+      "api_key_env": "ANTHROPIC_API_KEY",
+      "personality": "谨慎，先观察再发言"
+    },
+    {
+      "id": "p2",
+      "name": "GPT",
+      "adapter": "openai",
+      "model": "gpt-5",
+      "base_url": "https://api.openai.com/v1",
+      "api_key_env": "OPENAI_API_KEY",
+      "personality": "逻辑清晰，善于比较细节"
+    },
+    {
+      "id": "p3",
+      "name": "DeepSeek",
+      "adapter": "openai",
+      "model": "deepseek-chat",
+      "base_url": "https://api.deepseek.com",
+      "api_key_env": "DEEPSEEK_API_KEY",
+      "personality": "擅长抓语言细节，但不要过度自信"
+    },
+    {
+      "id": "p4",
+      "name": "Gemini",
+      "adapter": "openai",
+      "model": "gemini-2.5-flash",
+      "base_url": "https://generativelanguage.googleapis.com/v1beta/openai",
+      "api_key_env": "GEMINI_API_KEY",
+      "personality": "发言简洁，关注整体语义"
+    },
+    {
+      "id": "p5",
+      "name": "模拟观察员",
+      "adapter": "mock",
+      "model": "mock-v1",
+      "personality": "谨慎而有点多疑"
+    }
+  ]
+}
